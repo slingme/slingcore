@@ -51,20 +51,20 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x0"));
+    (0, uint256("0x000006793e527cc2bfc0d9bb434873c18ab011c54a8ef2b9584f6d97a1dbe906"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1525981707, // * UNIX timestamp of last checkpoint block
+    1531098372, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x001"));
+    boost::assign::map_list_of(0, uint256("0x000001a31c72349a96269ea4c611d6b2f1e122896b1f846676abb5a805b39d4d"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1740710,
+    1531090865,
     0,
     250};
 
@@ -101,8 +101,7 @@ public:
         pchMessageStart[1] = 0x37;
         pchMessageStart[2] = 0x13;
         pchMessageStart[3] = 0x37;
-        //TODO: (Sling) New Alert Key
-        vAlertPubKey = ParseHex("048216a20abab9c0edb9a813328bbc4dad2082dda77c4b990bccbade46a8a331928c3a165aa4bd8ef1d8e1b9c9660da46dd6371eed67f92ec711d2e0cbfb13b47e");
+        vAlertPubKey = ParseHex("04cb19e0c159760cff447973d1f9f24e15d68303f34948de0f5b2df4969237e3a9b9cc5b2105435262fa5044710ecbc91bda7b019fa231883117cc181f17d05c1c");
         nDefaultPort = 32137;
         bnProofOfWorkLimit = uint256S("000007fff0000000000000000000000000000000000000000000000000000000");
 
@@ -136,13 +135,13 @@ public:
         nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
         fNewChain = false;
 
-        //Sunday, July 8, 2018 11:01:05 PM
-        genesis = CreateGenesisBlock(1531090865, 2622957, UintToArith256(bnProofOfWorkLimit).GetCompact(), 1, (.35 * COIN));
+        //
+        genesis = CreateGenesisBlock(1531098372, 272872, UintToArith256(bnProofOfWorkLimit).GetCompact(), 1, (.35 * COIN));
         if(fNewChain == true) { MineGenesis(genesis, bnProofOfWorkLimit, true); }
 
         hashGenesisBlock = genesis.GetHash();
         if (!fNewChain) {
-            assert(hashGenesisBlock == uint256("0x000001a31c72349a96269ea4c611d6b2f1e122896b1f846676abb5a805b39d4d"));
+            assert(hashGenesisBlock == uint256("0x000006793e527cc2bfc0d9bb434873c18ab011c54a8ef2b9584f6d97a1dbe906"));
             assert(genesis.hashMerkleRoot == uint256("0x3f18381a548302c0c3bf33bdf0e0efd61968024a217ae587bbe670c2f6dd632d"));
         }
 
@@ -170,8 +169,7 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        //TODO: (Sling) New Spork Key
-		strSporkKey = "048216a20abab9c0edb9a813328bbc4dad2082dda77c4b990bccbade46a8a331928c3a165aa4bd8ef1d8e1b9c9660da46dd6371eed67f92ec711d2e0cbfb13b47e";  //TODO new key here
+		strSporkKey = "0467662d0bd65de02cd1a7325968c116a2ae9ad3c55ecdb6509c2a2c264f37981068f16c5fb3986e84347f0b14316c445d48a1d47fcd51161270b05aad29aa323b";  //TODO new key here
         strObfuscationPoolDummyAddress = "";
         nStartMasternodePayments = genesis.nTime + 7350;
 
@@ -207,8 +205,7 @@ public:
         pchMessageStart[1] = 0x36;
         pchMessageStart[2] = 0x14;
         pchMessageStart[3] = 0x36;
-        //TODO: (Sling) New Alert Key
-        vAlertPubKey = ParseHex("048216a20abab9c0edb9a813328bbc4dad2082dda77c4b990bccbade46a8a331928c3a165aa4bd8ef1d8e1b9c9660da46dd6371eed67f92ec711d2e0cbfb13b47e");
+        vAlertPubKey = ParseHex("04cb19e0c159760cff447973d1f9f24e15d68303f34948de0f5b2df4969237e3a9b9cc5b2105435262fa5044710ecbc91bda7b019fa231883117cc181f17d05c1c");
         nDefaultPort = 32237;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -238,12 +235,7 @@ public:
             assert(hashGenesisBlock == uint256("0x000001a31c72349a96269ea4c611d6b2f1e122896b1f846676abb5a805b39d4d"));
             assert(genesis.hashMerkleRoot == uint256("0x3f18381a548302c0c3bf33bdf0e0efd61968024a217ae587bbe670c2f6dd632d"));
         }
-	    hashGenesisBlock = genesis.GetHash();
-
-        if (!fNewChain) {
-            assert(hashGenesisBlock == uint256("0x000001a31c72349a96269ea4c611d6b2f1e122896b1f846676abb5a805b39d4d"));
-            assert(genesis.hashMerkleRoot == uint256("0x3f18381a548302c0c3bf33bdf0e0efd61968024a217ae587bbe670c2f6dd632d"));
-        }
+	    
         //TODO: (Sling) Add DNS seeders  
         vSeeds.push_back(CDNSSeedData("slingmarket.net", "seed.testnet.slingmarket.net"));     // Primary DNS Seeder from slingmarket.net
         vFixedSeeds.clear();
@@ -269,8 +261,7 @@ public:
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
-        //TODO: (Sling) New Spork Key
-        strSporkKey = "048216a20abab9c0edb9a813328bbc4dad2082dda77c4b990bccbade46a8a331928c3a165aa4bd8ef1d8e1b9c9660da46dd6371eed67f92ec711d2e0cbfb13b47e";
+        strSporkKey = "0467662d0bd65de02cd1a7325968c116a2ae9ad3c55ecdb6509c2a2c264f37981068f16c5fb3986e84347f0b14316c445d48a1d47fcd51161270b05aad29aa323b";
         strObfuscationPoolDummyAddress = "";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
