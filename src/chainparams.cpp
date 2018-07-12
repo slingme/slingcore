@@ -126,7 +126,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 3500;  //TODO: (Sling) Increase Last PoW Block
         nModifierUpdateBlock = 999999999;
-        nZerocoinStartHeight = 1000;
+        nZerocoinStartHeight = 3500;
         nAccumulatorStartHeight = 1;
         nZerocoinStartTime = 1525981707; // 14 - apr - 2018
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
@@ -135,7 +135,7 @@ public:
         nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
         fNewChain = false;
 
-        //
+        // Monday, July 9, 2018 1:06:12 AM GMT
         genesis = CreateGenesisBlock(1531098372, 272872, UintToArith256(bnProofOfWorkLimit).GetCompact(), 1, (.35 * COIN));
         if(fNewChain == true) { MineGenesis(genesis, bnProofOfWorkLimit, true); }
 
